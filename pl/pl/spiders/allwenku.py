@@ -59,7 +59,7 @@ class BookSpider(scrapy.spiders.Spider):
 
     def start_requests(self):
         pages = []
-        for i in range(1, 5):
+        for i in range(1, 101):
             url = 'https://www.wenku8.net/book/%s.htm' % i
             page = scrapy.Request(url)
             pages.append(page)
