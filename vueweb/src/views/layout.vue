@@ -2,7 +2,7 @@
     <el-row class="container">
         <el-col :span="24" class="header">
             <el-col :span="10" class="logo logo-width">
-                <img src="../assets/Bitmap.png">系统名称
+                系统名称
             </el-col>
 
             <el-col :span="4" class="userinfo">
@@ -12,6 +12,7 @@
                 </i>
                 <i class="fa fa-sign-out icon-padding" aria-hidden="true"></i>
                 <i class="userinfo-inner" @click="logout">退出</i>
+                <i class="userinfo-inner" @click="downloadFile">导出</i>
             </el-col>
         </el-col>
         <el-col :span="24" class="main">
@@ -59,19 +60,22 @@
 
         data() {
             return {
-
+                id:'123'
             }
         },
         methods: {
             logout(){
                 this.$router.push('/login');
+            },
+            downloadFile(){
+                window.location.href='http://localhost:63000/demo/dowload/testFile?id='+this.id
             }
         },
         mounted() {
             let user = JSON.parse(sessionStorage.getItem('vuex'));
-            if(!user){
-                this.$router.push('/login');
-            }
+            // if(!user){
+            //     this.$router.push('/login');
+            // }
         }
 
     }

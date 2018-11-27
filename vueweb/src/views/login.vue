@@ -1,9 +1,9 @@
 <template>
     <section class="ub-login">
         <div class="login_box">
-            <div class="login_l_img"><img src="../assets/login-img.png"/></div>
+            <div class="login_l_img"></div>
             <div class="login">
-                <div class="login_logo"><a href="#"><img src="../assets/login_logo.png"/></a></div>
+                <div class="login_logo"><a href="#"></a></div>
                 <div class="login_name">
                     <p>商户平台</p>
                 </div>
@@ -59,11 +59,12 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        login(this.user).then(res => {
-                            if (!res) return;
-                            sessionStorage.setItem('vuex', '22222222');
-                            this.$router.push('/main');
-                        });
+                        // login(this.user).then(res => {
+                        //     if (!res) return;
+                        //     sessionStorage.setItem('vuex', '22222222');
+                        //
+                        // });
+                        this.$router.push('/main');
                     }
                 });
             },
