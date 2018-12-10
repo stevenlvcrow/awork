@@ -44,7 +44,6 @@ public class DowloadController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new ResponseEntity<byte[]>(outByteStream.toByteArray(),
-                headers, HttpStatus.CREATED);
+        return new ResponseEntity<byte[]>(outByteStream.toByteArray(),headers, HttpStatus.CREATED);
     }
 }
