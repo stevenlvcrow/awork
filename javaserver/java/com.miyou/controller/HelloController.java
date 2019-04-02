@@ -16,6 +16,7 @@ public class HelloController {
     @RequestMapping("/")
     public String index() {
         testService.methodA(new User("张三"));
+        System.out.println("测试修改");
         return "/index.html";
     }
 
