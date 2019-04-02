@@ -117,6 +117,14 @@
     <build>
         <plugins>
             <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
@@ -140,6 +148,32 @@
             </plugin>
 
         </plugins>
+        <resources>
+            <resource>
+                <directory>java/com/miyou</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.pfx</include>
+                    <include>**/*.cer</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>resource</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.jks</include>
+                    <include>**/*.cer</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.ttc</include>
+                    <include>**/*.sm2</include>
+                    <include>**/*.pem</include>
+                    <include>**/*.html</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
     </build>
 
 
