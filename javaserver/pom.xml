@@ -5,7 +5,7 @@
 
     <groupId>com.miyou</groupId>
     <artifactId>javaserver</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1</version>
     <packaging>war</packaging>
 
     <name>javaserver</name>
@@ -129,6 +129,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <includeSystemScope>true</includeSystemScope>
+                    <executable>true</executable>
                 </configuration>
             </plugin>
             <plugin>
@@ -148,33 +149,7 @@
             </plugin>
 
         </plugins>
-        <resources>
-            <resource>
-                <directory>java/com/miyou</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                    <include>**/*.pfx</include>
-                    <include>**/*.cer</include>
-                    <include>**/*.java</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-            <resource>
-                <directory>resource</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.jks</include>
-                    <include>**/*.cer</include>
-                    <include>**/*.xml</include>
-                    <include>**/*.ttc</include>
-                    <include>**/*.sm2</include>
-                    <include>**/*.pem</include>
-                    <include>**/*.html</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
+
     </build>
 
 
