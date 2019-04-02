@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.miyou.utils.HttpClientUtil;
 import org.apache.commons.lang.StringUtils;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
@@ -24,8 +25,8 @@ public class HttpServiceImpl {
         queryObj.put("outTradeNo", "1073101");//64;--partnerCode+
         queryObj.put("requestTime", sdf.format(new Date()));//yyyyMMddHHmmssSSS
         JSONObject body = new JSONObject();
-        body.put("identity", "420625199207201531");
-        body.put("name", "lizhijie");
+        body.put("identity", "420625199207261531");
+        body.put("name", "李智杰");
         body.put("mobile", "17607105677");
         queryObj.put("body", body);
     }
@@ -33,15 +34,14 @@ public class HttpServiceImpl {
 
 
     public void tielu(JSONObject queryObj){
-        URL = "https://test-risk.xhy.com/api/railwayTimes";
+        URL = "http://39.107.71.193/admin/companyconfig/fileapi/gatfile?fileName=repay.csv&type=1&abbreviate=jbdwl";
 
-        queryObj.put("partnerCode", "2018120509219538");//
-        queryObj.put("partnerKey", "8467480fa2441579efd7e9c7e24fcc99");//key
-        queryObj.put("outTradeNo", "1073101");//64;--partnerCode+
-        queryObj.put("requestTime", sdf.format(new Date()));//yyyyMMddHHmmssSSS
+//        queryObj.put("fileName", "repay.csv");//
+//        queryObj.put("type", "1");//key
+//        queryObj.put("abbreviate", "jbdwl");
         JSONObject body = new JSONObject();
-        body.put("", "");
-        queryObj.put("body", body);
+//        body.put("identity", "420625199207261531");
+//        queryObj.put("body", body);
     }
 
     public void pingji(JSONObject queryObj){
@@ -62,36 +62,18 @@ public class HttpServiceImpl {
         if (StringUtils.isNotEmpty(resultStr)) {
             try {
                 JSONObject resultObj = JSONObject.parseObject(resultStr);
-                boolean success = resultObj.getBooleanValue("success");
-                if (success) {
-                    String data = resultObj.getString("data");
-                    if (StringUtils.isNotEmpty(data)) {
-                        Map<String, Object> resultMap = JSONObject.parseObject(data, Map.class);
-                        System.out.println(resultMap);
-                        System.out.println(asciiToString(""+resultMap.get("msg")));
-//
-                    }
-                }
+                System.out.println(resultObj);
             } catch (Exception e) {
             }
         }
     }
 
     public static void main(String[] args) {
-        HttpServiceImpl httpService = new HttpServiceImpl();
-        JSONObject queryObj = new JSONObject();
-        //httpService.tielu(queryObj);
-        httpService.changzhai(queryObj);
-        httpService.remoat(queryObj);
+
+        String URL = "http://39.107.71.193/admin/companyconfig/fileapi/gatfile?fileName=repay.csv&type=1&abbreviate=jbdwl";
+        String str =  HttpClientUtil.doUpload(URL,new File("D:/repay.csv"));
+        System.out.println(str);
     }
 
-    public static String asciiToString(String value)
-    {
-        StringBuilder sbu = new StringBuilder();
-        String[] chars = value.split(",");
-        for (String aChar : chars) {
-            sbu.append((char) Integer.parseInt(aChar));
-        }
-        return sbu.toString();
-    }
+
 }

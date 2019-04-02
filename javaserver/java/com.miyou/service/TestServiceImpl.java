@@ -13,5 +13,6 @@ public class TestServiceImpl<T> implements  TestService<T>{
 
         User user = (User) entity;
         log.info(user.getName());
+
     }
 }
