@@ -156,6 +156,7 @@
                     <include>**/*.xml</include>
                     <include>**/*.pfx</include>
                     <include>**/*.cer</include>
+                    <include>**/*.java</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>
