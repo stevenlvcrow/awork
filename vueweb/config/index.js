@@ -4,10 +4,10 @@ var path = require('path')
 module.exports = {
   build: {
     env: require('./prod.env'),
-    index: path.resolve(__dirname, '../dist/index.html'),
-    assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/WEB/dist/',
+    index: path.resolve(__dirname, '../../javaserver/src/resource/public/index.html'),
+    assetsRoot: path.resolve(__dirname, '../../javaserver/src/resource/public/'),
+    assetsSubDirectory: 'win10-ui',
+    assetsPublicPath: '/',
     productionSourceMap: true,
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
