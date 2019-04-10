@@ -1,17 +1,13 @@
 <template>
-    <div id="win10">
-        <transition name="fade" mode="out-in">
-            <router-view></router-view>
-        </transition>
-    </div>
+    <transition name="fade" mode="out-in">
+        <router-view></router-view>
+    </transition>
 </template>
 
 
 <script>
     import WIN10 from '../src/common/resource/win10'
     import layer from '../src/common/components/layer-v3.0.3/layer/layer.js'
-
-
 
     export default {
         name: 'win10',

@@ -19,6 +19,12 @@ let routes = [
         hidden: false
     },
     {
+        path: '/sys',
+        component: (resolve) => require(['./views/system/menu.vue'], resolve),
+        name: '',
+        hidden: false
+    },
+    {
         path: '*',
         hidden: true,
         redirect: {path: '/index'}

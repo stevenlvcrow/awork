@@ -416,14 +416,14 @@ window.Win10 = {
             $("#win10_btn_time").html(hours+':'+mins+'<br/>'+year+'/'+month+'/'+date);
         },1000);
         //离开前警告
-        document.body.onbeforeunload = function(event){
-            var rel = Win10.lang( '系统可能不会保存您所做的更改','The system may not save the changes you have made.');
-            if(!window.event){
-                event.returnValue=rel;
-            }else{
-                window.event.returnValue=rel;
-            }
-        };
+        // document.body.onbeforeunload = function(event){
+        //     var rel = Win10.lang( '系统可能不会保存您所做的更改','The system may not save the changes you have made.');
+        //     if(!window.event){
+        //         event.returnValue=rel;
+        //     }else{
+        //         window.event.returnValue=rel;
+        //     }
+        // };
         Win10.buildList();//预处理左侧菜单
         Win10._startAnimate();//动画处理
         Win10.renderShortcuts();//渲染图标
@@ -675,7 +675,7 @@ window.Win10 = {
 
 
     openUrl: function (url, title,areaAndOffset) {
-        if(this._countTask>12){
+        if(this._countTask>=5){
             layer.msg("您打开的太多了，歇会儿吧~");
             return false;
         }else{
@@ -685,14 +685,15 @@ window.Win10 = {
         // url=url.replace(/(^\s*)|(\s*$)/g, "");
         // var preg=/^(https?:\/\/|\.\.?\/|\/\/?)/;
         // if(!preg.test(url)){
-        //     url='http://'+url;
+        //     url='http://localhost:60004/'+url;
         // }
         // if (!url) {
         //     url = '';
         // }
-        if (!title) {
-            title = url;
-        }
+        // if (!title) {
+        //     title = url;
+        // }
+        //console.log(url);
         var area,offset;
         if (this.isSmallScreen() || areaAndOffset==='max') {
             area = ['100%', (document.body.clientHeight - 40) + 'px'];
