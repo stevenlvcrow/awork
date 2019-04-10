@@ -60,12 +60,12 @@ window.Win10 = {
     },
     _handleReady:[],
     _hideShortcut:function () {
-        var that=$("#win10 #win10-shortcuts .shortcut");
+        var that=$("#win10 section #win10-shortcuts .shortcut");
         that.removeClass('animated flipInX');
         that.addClass('animated flipOutX');
     },
     _showShortcut:function () {
-        var that=$("#win10 #win10-shortcuts .shortcut");
+        var that=$("#win10 section #win10-shortcuts .shortcut");
         that.removeClass('animated flipOutX');
         that.addClass('animated flipInX');
     },
@@ -290,8 +290,9 @@ window.Win10 = {
             Win10.menuClose();
             Win10.commandCenterToggle();
         });
-        $("#win10 .desktop").click(function () {
+        $("#win10 section .desktop").click(function () {
             Win10.menuClose();
+            Win10._removeContextMenu()
             Win10.commandCenterClose();
         });
         $('#win10').on('click',".msg .btn_close_msg", function () {
@@ -312,7 +313,7 @@ window.Win10 = {
             }, 1000);
         });
         $("#win10_btn_show_desktop").click(function () {
-            $("#win10 .desktop").click();
+            $("#win10 section .desktop").click();
             Win10.hideWins();
         });
         $("#win10-menu-switcher").click(function () {
@@ -341,7 +342,7 @@ window.Win10 = {
             },520)
         });
         $("#win10_btn_group_middle").click(function () {
-            $("#win10 .desktop").click();
+            $("#win10 section .desktop").click();
         });
         $(document).on('click', '.win10-btn-refresh', function () {
             var index = $(this).attr('index');
@@ -444,51 +445,24 @@ window.Win10 = {
                 $(this).parent().parent().find('.layui-layer-btn0').click();
             }
         });
-        //打广告
-        setTimeout(function () {
-            console.log(Win10.lang('本页由Win10-UI强力驱动\n更多信息：http://win10ui.yuri2.cn \nWin10-UI,轻松打造别具一格的后台界面 ','The page is strongly driven by Win10-UI.\nFor more info: http://win10ui.yuri2.cn.\n Win10-UI, easy to create a unique background interface.'))
-        },2000);
+
         //点击清空右键菜单
-        $(document).click(function (event) {
-            if(!event.button)
-                Win10._removeContextMenu();
-        });
-        //禁用右键的右键
-        $(document).on('contextmenu','.win10-context-menu',function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        });
+        // $(document).click(function (event) {
+        //     if(!event.button)
+        //         Win10._removeContextMenu();
+        // });
+        // //禁用右键的右键
+        // $(document).on('contextmenu','.win10-context-menu',function (e) {
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        // });
         //设置默认右键菜单
         Win10.setContextMenu('#win10',true);
-        Win10.setContextMenu('#win10>.desktop',[
-            ['<i class="fa fa-fw fa-star"></i> 收藏本页',function () {
-                var url = window.location;
-                var title = document.title;
-                var ua = navigator.userAgent.toLowerCase();
-                if (ua.indexOf("360se") > -1) {
-                    layer.alert(Win10.lang('您的浏览器不支持,请按 Ctrl+D 手动收藏!','Your browser does not support, please press Ctrl+D to manual collection!'));
-                }
-                else if (ua.indexOf("msie 8") > -1) {
-                    window.external.AddToFavoritesBar(url, title); //IE8
-                }
-                else if (document.all) {
-                    try{
-                        window.external.addFavorite(url, title);
-                    }catch(e){
-                        layer.alert(Win10.lang('您的浏览器不支持,请按 Ctrl+D 手动收藏!','Your browser does not support, please press Ctrl+D to manual collection!'));
-                    }
-                }
-                else if (window.sidebar) {
-                    window.sidebar.addPanel(title, url, "");
-                }
-                else {
-                    layer.alert(Win10.lang('您的浏览器不支持,请按 Ctrl+D 手动收藏!','Your browser does not support, please press Ctrl+D to manual collection!'));
-                }
-            }],
+        Win10.setContextMenu('#win10>section>.desktop',[
             ['<i class="fa fa-fw fa-window-maximize"></i> '+Win10.lang('进入全屏','Enable Full Screen'),function () {Win10.enableFullScreen()}],
             ['<i class="fa fa-fw fa-window-restore"></i> '+Win10.lang('退出全屏','Disable Full Screen'),function () {Win10.disableFullScreen()}],
             '|',
-            ['<i class="fa fa-fw fa-info-circle"></i> '+Win10.lang('关于','About Us'),function () {Win10.aboutUs()}],
+            ['<i class="fa fa-fw fa-info-circle"></i> '+Win10.lang('更换壁纸','Change Wallpapers'),function () {Win10.changeWallpaper()}],
         ]);
         Win10.setContextMenu('#win10_btn_group_middle',[
             ['<i class="fa fa-fw fa-window-maximize"></i> '+Win10.lang('全部显示','Show All Windows'),function () {Win10.showWins()}],
@@ -538,7 +512,7 @@ window.Win10 = {
                 top: 0,
                 'z-index': 100,
             });
-            $("#win10 .desktop").append("<div id='win10-desktop-scene' style='width: 100%;height: calc(100% - 40px);position: absolute;left: 0;top: 0; z-index: 0;background-color: transparent;'></div>")
+            $("#win10 section .desktop").append("<div id='win10-desktop-scene' style='width: 100%;height: calc(100% - 40px);position: absolute;left: 0;top: 0; z-index: 0;background-color: transparent;'></div>")
         }
 
         //属性绑定
@@ -579,9 +553,9 @@ window.Win10 = {
         $("#win10-msg-nof").removeClass('on-new-msg fa-commenting-o');
     },
     renderShortcuts:function () {
-        var h=parseInt($("#win10 #win10-shortcuts")[0].offsetHeight/100);
+        var h=parseInt($("#win10 section #win10-shortcuts")[0].offsetHeight/100);
         var x=0,y=0;
-        $("#win10 #win10-shortcuts .shortcut").each(function () {
+        $("#win10 section #win10-shortcuts .shortcut").each(function () {
             $(this).css({
                 left:x*82+10,
                 top:y*100+10,
@@ -707,15 +681,15 @@ window.Win10 = {
         }else{
             this._countTask++;
         }
-        if(!url){url='404'}
-        url=url.replace(/(^\s*)|(\s*$)/g, "");
-        var preg=/^(https?:\/\/|\.\.?\/|\/\/?)/;
-        if(!preg.test(url)){
-            url='http://'+url;
-        }
-        if (!url) {
-            url = '//yuri2.cn';
-        }
+        // if(!url){url='404'}
+        // url=url.replace(/(^\s*)|(\s*$)/g, "");
+        // var preg=/^(https?:\/\/|\.\.?\/|\/\/?)/;
+        // if(!preg.test(url)){
+        //     url='http://'+url;
+        // }
+        // if (!url) {
+        //     url = '';
+        // }
         if (!title) {
             title = url;
         }
@@ -767,7 +741,7 @@ window.Win10 = {
         var layero_opened=Win10.getLayeroByIndex(index);
         layero_opened.css('z-index',Win10._countTask+813);
         Win10._settop(layero_opened);
-        layero_opened.find('.layui-layer-setwin').prepend('<a class="win10-btn-change-url" index="' + index + '" title="'+Win10.lang('修改地址','Change URL')+'" href="javascript:void(0)"><span class="fa fa-chain"></span></a><a class="win10-btn-refresh" index="' + index + '" title="'+Win10.lang('刷新','Refresh')+'" href="javascript:void(0)"><span class="fa fa-refresh"></span></a>');
+        layero_opened.find('.layui-layer-setwin').prepend('<a class="win10-btn-refresh" index="' + index + '" title="'+Win10.lang('刷新','Refresh')+'" href="javascript:void(0)"><span class="fa fa-refresh"></span></a>');
         layero_opened.find('.layui-layer-setwin .layui-layer-max').click(function () {
             setTimeout(function () {
                 var height=layero_opened.css('height');
@@ -855,6 +829,23 @@ window.Win10 = {
     lang:function (cn,en) {
         return this._lang==='zh-cn'||this._lang==='zh-tw'?cn:en;
     },
+
+    changeWallpaper:function() {
+            let thiz = this;
+            $.get("http://cn.bing.com/HPImageArchive.aspx?format=js&idx="+Math.ceil(Math.random()*10)+"&n="+Math.ceil(Math.random()*10), function(result){
+                if(result.images[0]){
+                    thiz.setBgUrl({
+                        main:'https://cn.bing.com/'+result.url,
+                        mobile:'static/wallpapers/mobile.jpg',
+                    });
+                    thiz._removeContextMenu();
+                }
+            }).fail(function () {
+                thiz._removeContextMenu();
+            });
+
+    },
+
     aboutUs: function() {
         //关于我们
         layer.open({
@@ -872,7 +863,11 @@ window.Win10 = {
             '</div>'
         });
     },
+
+
+
     setContextMenu:function (jq_dom, menu) {
+
         if(typeof (jq_dom)==='string'){
             jq_dom=$(jq_dom);
         }

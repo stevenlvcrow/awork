@@ -1,6 +1,6 @@
 <template>
     <section>
-        <div class="desktop">
+        <div class="desktop1">
             <div id="win10-shortcuts" class="shortcuts-hidden">
                 <div class="shortcut" onclick="Win10.openUrl('http://win10ui.yuri2.cn','<img class=\'icon\' src=\'static/icon/win10.png\'/>Win10-UI官网')">
                     <img class="icon" src="static/icon/win10.png"/>
