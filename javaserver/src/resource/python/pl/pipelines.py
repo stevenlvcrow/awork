@@ -8,11 +8,8 @@
 import os
 import io
 import sys
-import cx_Oracle
-
+import MySQLdb
 from scrapy.utils.project import get_project_settings
-from pl.items import WenkuItem
-from pl.items import BookItem
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -67,17 +64,16 @@ class PlPipeline(object):
     def __init__(self):
         settings = get_project_settings()
 
+        self.host = settings['DB_HOST']
+        self.port = settings['DB_PORT']
         self.name = settings['DB_NAME']
         self.password = settings['DB_PASSWORD']
         self.user = settings['DB_USER']
-        self.port = settings['DB_PORT']
-        self.host = settings['DB_HOST']
-
-        self.conn = cx_Oracle.connect(
-            user=self.user,
-            password=self.password,
-            dsn=self.host + '/' + self.name,
+        self.charset = settings['DB_CHARSET']
+        self.conn = MySQLdb.connect(
+            host=str(self.host), port=int(self.port), user=str(self.user), passwd=str(self.password), db=str(self.name), charset=str(self.charset)
         )
+
         self.cursor = self.conn.cursor()
 
     def process_item(self, item, spider):

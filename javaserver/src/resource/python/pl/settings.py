@@ -87,8 +87,11 @@ ITEM_PIPELINES = {
 # HTTPCACHE_DIR = 'httpcache'
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-DB_HOST = 'localhost'
-DB_PORT = '1521'
-DB_USER = 'lizhijie'
-DB_PASSWORD = 'lizhijie'
-DB_NAME = 'orcl'
+
+DB_HOST = '47.106.148.133'
+DB_PORT = '3306'
+DB_USER = 'root'
+DB_PASSWORD = 'admin'
+DB_NAME = 'test'
+DB_CHARSET = 'utf8'
+
