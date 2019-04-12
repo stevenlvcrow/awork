@@ -3,7 +3,6 @@ package com.miyou.utils;
 import lombok.extern.java.Log;
 import org.python.core.*;
 import org.python.util.PythonInterpreter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
